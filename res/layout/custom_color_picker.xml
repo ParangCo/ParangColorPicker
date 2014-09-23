@@ -3,66 +3,66 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center" >
 
-    <RelativeLayout
-        android:id="@+id/linlay1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical" >
 
-        <HorizontalScrollView
-            android:id="@+id/DefaultColorsPanelScrollView"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" >
-
-            <LinearLayout
-                android:id="@+id/DefaultColorsPanelLinearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal" >
-                
-                
-                
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <FrameLayout
+        <RelativeLayout
+            android:id="@+id/linlay1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/DefaultColorsPanelScrollView"
-            android:layout_centerInParent="true" >
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical" >
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+            <HorizontalScrollView
+                android:id="@+id/DefaultColorsPanelScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:visibility="visible" >
 
-                <ImageView
-                    android:id="@+id/ccpSelectedColor"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerInParent="true" />
-
-                <ImageView
-                    android:id="@+id/ccpColorArea"
+                <LinearLayout
+                    android:id="@+id/DefaultColorsPanelLinearLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/picker" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
 
-                <EditText
-                    android:id="@+id/ColorHexEditText"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/ccpColorArea"
-                    android:layout_marginTop="20dp"
-                    android:ems="10"
-                    android:hint="#FFFFFF" >
-                </EditText>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DefaultColorsPanelScrollView"
+                android:layout_centerInParent="true" >
 
-            </RelativeLayout>
-        </FrameLayout>
-    </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/ccpSelectedColor"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true" />
+
+                    <ImageView
+                        android:id="@+id/ccpColorArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/picker" />
+
+                    <EditText
+                        android:id="@+id/ColorHexEditText"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ccpColorArea"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:hint="#FFFFFF"
+                        android:visibility="gone" >
+                    </EditText>
+                </RelativeLayout>
+            </FrameLayout>
+        </RelativeLayout>
+
 
 </merge>

@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,8 +20,7 @@ import android.widget.RelativeLayout;
 
 public class ParangColorPickerWidget extends RelativeLayout {
 
-	private String[] ColorsValue = { "#FFFFFF", "#000000", "#0099CC",
-			"#AA66CC", "#99CC00", "#FF8800", "#FF4444", "#CC0000" };
+	private String[] ColorsValue = { "#FFFFFF", "#000000", "#0099CC", "#AA66CC", "#99CC00", "#FF8800", "#FF4444", "#CC0000" };
 
 	private Context context;
 	private ImageView mColorArea, mSelectedColor;
@@ -29,6 +29,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 
 	private OnTouchListener ColorAreaOnTouchListener;
 	boolean IsPersian = false;
+	private Bitmap bitmap;
 
 	LinearLayout DefaultColorsPanelLinearLayout;
 	OnClickListener DefaultColorClickListener;
@@ -37,12 +38,12 @@ public class ParangColorPickerWidget extends RelativeLayout {
 		super(context, attrs);
 		this.context = context;
 
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.custom_color_picker, this, true);
 
 		mSelectedColor = (ImageView) findViewById(R.id.ccpSelectedColor);
 		mColorArea = (ImageView) findViewById(R.id.ccpColorArea);
+		bitmap = ((BitmapDrawable) mColorArea.getDrawable()).getBitmap();
 
 		DefaultColorsPanelLinearLayout = (LinearLayout) findViewById(R.id.DefaultColorsPanelLinearLayout);
 		ColorHexEditText = (EditText) findViewById(R.id.ColorHexEditText);
@@ -63,15 +64,13 @@ public class ParangColorPickerWidget extends RelativeLayout {
 
 		SelectedColor = DefaultColor;
 		mSelectedColor.setBackgroundColor(SelectedColor);
-		ColorHexEditText.setText(String.format("#%06X",
-				(0xFFFFFF & SelectedColor)));
+		ColorHexEditText.setText(String.format("#%06X", (0xFFFFFF & SelectedColor)));
 
 		ColorHexEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
-			public void onTextChanged(CharSequence HexColor, int arg1,
-					int arg2, int arg3) {
-				
+			public void onTextChanged(CharSequence HexColor, int arg1, int arg2, int arg3) {
+
 				try {
 
 					SelectedColor = Color.parseColor(HexColor.toString());
@@ -83,8 +82,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 			}
 
 			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1,
-					int arg2, int arg3) {
+			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 
 			}
 
@@ -101,11 +99,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 
 				int x = (int) event.getX();
 				int y = (int) event.getY();
-				Log.d("x y ", String.valueOf(x) + " " + String.valueOf(y));
 
-				ImageView mColorAreaView = ((ImageView) ColorAreaView);
-				Bitmap bitmap = ((BitmapDrawable) mColorAreaView.getDrawable())
-						.getBitmap();
 				int pixel = 0;
 				try {
 					pixel = bitmap.getPixel(x, y);
@@ -123,8 +117,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 
 				int mycolor = Color.rgb(redValue, greenValue, blueValue);
 
-				ColorHexEditText.setText(String.format("#%06X",
-						(0xFFFFFF & mycolor)));
+				ColorHexEditText.setText(String.format("#%06X", (0xFFFFFF & mycolor)));
 
 				return true;
 			}
@@ -135,8 +128,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 
 			@Override
 			public void onClick(View view) {
-				ColorHexEditText.setText(String.format("#%06X",
-						(0xFFFFFF & (Integer) ((Button) view).getTag())));
+				ColorHexEditText.setText(String.format("#%06X", (0xFFFFFF & (Integer) ((Button) view).getTag())));
 			}
 		};
 
@@ -170,6 +162,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 		// DefaultColorsPanelLinearLayout.addView(child);
 		Button button;
 
+		int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, this.getResources().getDisplayMetrics());
 		for (int i = 0; i < ColorsValue.length; i++) {
 
 			button = new Button(context);
@@ -178,8 +171,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 			button.setOnClickListener(DefaultColorClickListener);
 			// button.setId();
 			button.setTag(Color.parseColor(ColorsValue[i]));
-			button.setLayoutParams(new android.widget.LinearLayout.LayoutParams(
-					100, 100, 1));
+			button.setLayoutParams(new android.widget.LinearLayout.LayoutParams(size, size, 1));
 
 			DefaultColorsPanelLinearLayout.addView(button);
 		}
@@ -194,8 +186,7 @@ public class ParangColorPickerWidget extends RelativeLayout {
 		DefaultColor = defaultColor;
 		SelectedColor = defaultColor;
 		mSelectedColor.setBackgroundColor(SelectedColor);
-		ColorHexEditText.setText(String.format("#%06X",
-				(0xFFFFFF & SelectedColor)));
+		ColorHexEditText.setText(String.format("#%06X", (0xFFFFFF & SelectedColor)));
 
 	}
 
