@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 
 public class ParangColorPickerWidget extends RelativeLayout {
 
-	private String[] ColorsValue = { "#FFFFFF", "#000000", "#0099CC", "#AA66CC", "#99CC00", "#FF8800", "#FF4444", "#CC0000", "#FFD700", "#DDDDDD" };
+	private String[] ColorsValue = { "#FFFFFF", "#222222", "#0099CC", "#AA66CC", "#99CC00", "#FF8800", "#FF4444", "#CC0000", "#FFD700", "#DDDDDD" };
 
 	private Context context;
 	private ImageView mColorArea, mSelectedColor;
